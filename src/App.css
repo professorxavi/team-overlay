@@ -55,5 +55,5 @@
 
 .example-leave.example-leave-active {
   opacity: 0.01;
-  transition: all 1000ms ease-out;
+  transition: all 500ms ease-out;
 }

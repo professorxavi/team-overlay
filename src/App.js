@@ -64,7 +64,7 @@ class App extends Component {
             <CSSTransitionGroup
             transitionName="example"
             transitionEnterTimeout={1500}
-            transitionLeaveTimeout={1000}>
+            transitionLeaveTimeout={500}>
             { pokemon }
             </CSSTransitionGroup>
           </ul>
