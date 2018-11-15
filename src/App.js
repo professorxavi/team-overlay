@@ -13,10 +13,13 @@ class App extends Component {
       client: socket(),
     };
     this.updateTeam = this.updateTeam.bind(this);
+    this.showTeam = this.showTeam.bind(this);
   }
 
   componentDidMount() {
     this.state.client.updateTeam(this.updateTeam);
+    this.state.client.showTeam(this.showTeam);
+    this.state.client.hideTeam(this.hideTeam);
     this.updateTeam();
   }
 
@@ -24,7 +27,20 @@ class App extends Component {
     axios.get('http://tauntaun.net:7000/party/')
       .then(response => this.setState(
         { queue: response.data }));
+        this.showTeam();
+        setTimeout(() => {this.hideTeam();}, 30000);
   }
+
+  showTeam() {
+    document.getElementById('App').style.opacity = '1';
+    document.getElementById('App').style.transition = 'opacity 2s';
+  }
+
+  hideTeam() {
+    document.getElementById('App').style.opacity = '0';
+    document.getElementById('App').style.transition = 'opacity 2s';
+  }
+
 
   render() {
     const partySize = this.state.queue.length;
@@ -42,7 +58,7 @@ class App extends Component {
     });
 
     return (
-      <div className="App">
+      <div id="App">
         <div style={overlay} className="party">
           <ul>
             <CSSTransitionGroup
