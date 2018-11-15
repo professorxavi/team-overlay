@@ -50,10 +50,11 @@
 
 .example-leave {
   opacity: 1;
-  transform: scale(1) translateX(0%);
+  transform: translateX(0%);
 }
 
 .example-leave.example-leave-active {
   opacity: 0.01;
+  transform: translateX(-200%);
   transition: all 500ms ease-out;
 }
