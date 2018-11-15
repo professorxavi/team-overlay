@@ -1,7 +1,7 @@
 const io = require('socket.io-client')
 
 export default function () {
-  const socket = io.connect('http://localhost:4000')
+  const socket = io.connect('http://tauntaun.net:4000')
 
   function updateTeam(onMessageReceived) {
     socket.on('update team', onMessageReceived)
