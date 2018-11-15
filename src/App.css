@@ -1,0 +1,58 @@
+.App {
+  height: 100vh;
+}
+
+.mon0{
+  position: absolute;
+  left: 24px;
+  top: 57px;
+}
+
+.mon1{
+  position: absolute;
+  left: 24px;
+  top: 163px;
+}
+
+.mon2{
+  position: absolute;
+  left: 24px;
+  top: 269px;
+}
+
+.mon3{
+  position: absolute;
+  left: 24px;
+  top: 375px;
+}
+
+.mon4{
+  position: absolute;
+  left: 24px;
+  top: 481px;
+}
+
+.mon5{
+  position: absolute;
+  left: 24px;
+  top: 587px;
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: all 1000ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+  transform: scale(1) translateX(0%);
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: all 1000ms ease-out;
+}
