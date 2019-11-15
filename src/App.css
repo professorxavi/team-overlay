@@ -1,42 +1,18 @@
 #App {
   height: 100vh;
-  opacity: 0;
+  /* opacity: 0; */
 }
 
-.mon0{
-  position: absolute;
-  left: 24px;
-  top: 57px;
+.party-member {
+  background-image: url("/team/ball.png");
+  background-repeat: no-repeat;
+  height: 105px;
 }
 
-.mon1{
-  position: absolute;
-  left: 24px;
-  top: 163px;
-}
-
-.mon2{
-  position: absolute;
-  left: 24px;
-  top: 269px;
-}
-
-.mon3{
-  position: absolute;
-  left: 24px;
-  top: 375px;
-}
-
-.mon4{
-  position: absolute;
-  left: 24px;
-  top: 481px;
-}
-
-.mon5{
-  position: absolute;
-  left: 24px;
-  top: 587px;
+.mon{
+  position: relative;
+  left: 15px;
+  top: 15px;
 }
 
 .example-enter {

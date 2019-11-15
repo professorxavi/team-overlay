@@ -1,10 +1,10 @@
 const io = require('socket.io-client')
 
 export default function () {
-  const socket = io.connect('http://tauntaun.net:4000')
+  const socket = io.connect(process.env.REACT_APP_SOCKETURL)
 
   function updateTeam(onMessageReceived) {
-    socket.on('update team', onMessageReceived)
+    socket.on('show team', onMessageReceived)
   }
 
   function hideTeam(onMessageReceived) {
@@ -12,7 +12,7 @@ export default function () {
   }
 
   function showTeam(onMessageReceived) {
-    socket.on('show team', onMessageReceived)
+    socket.on('update team', onMessageReceived)
   }
 
   function unregisterHandler() {

@@ -1,7 +1,7 @@
+import 'dotenv/config';
 import React, { Component } from 'react';
 import axios from 'axios';
 import socket from './socket';
-import { CSSTransitionGroup } from 'react-transition-group';
 import Party from './Party';
 import './App.css';
 
@@ -9,64 +9,57 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      queue: [],
+      team: null,
       client: socket(),
     };
     this.updateTeam = this.updateTeam.bind(this);
     this.showTeam = this.showTeam.bind(this);
+    this.hideTeam = this.hideTeam.bind(this)
   }
 
   componentDidMount() {
     this.state.client.updateTeam(this.updateTeam);
-    this.state.client.showTeam(this.showTeam);
     this.state.client.hideTeam(this.hideTeam);
     this.updateTeam();
   }
 
-  updateTeam() {
-    axios.get('http://tauntaun.net:7000/party/')
+  async updateTeam() {
+    await axios.get(process.env.REACT_APP_TEAM_API_URL)
       .then(response => this.setState(
-        { queue: response.data }));
+        { team: response.data }));
         this.showTeam();
         setTimeout(() => {this.hideTeam();}, 30000);
   }
 
   showTeam() {
     document.getElementById('App').style.opacity = '1';
-    document.getElementById('App').style.transition = 'opacity 2s';
   }
 
   hideTeam() {
     document.getElementById('App').style.opacity = '0';
     document.getElementById('App').style.transition = 'opacity 2s';
+    setTimeout(() => {
+      this.setState({team: { mons:[] }});
+    }, 3000);
+
   }
 
 
   render() {
-    const partySize = this.state.queue.length;
-    const overlay = {
-      backgroundImage: 'url(\'./team/' + partySize + '.png\')',
-      backgroundRepeat: 'no-repeat',
-      height: '100%'
-    };
-    const pokemon = this.state.queue.map((c, index) => {
+    if (!this.state.team) return (<div></div>);
+    const pokemon = this.state.team.mons.map((c, index) => {
       return(
-        <li key={c._id} className={"mon" + index}>
-          <Party mon={c}/>
+        <li key={c._id}>
+          <Party wait={index * 200} index={index} mon={c}/>
         </li>
       );
     });
 
     return (
       <div id="App">
-        <div style={overlay} className="party">
+        <div className="party">
           <ul>
-            <CSSTransitionGroup
-            transitionName="example"
-            transitionEnterTimeout={1500}
-            transitionLeaveTimeout={500}>
             { pokemon }
-            </CSSTransitionGroup>
           </ul>
         </div>
       </div>
